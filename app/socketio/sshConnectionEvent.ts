@@ -97,8 +97,10 @@ class SshConnectionEvent implements ServerSocketIO.SocketListener {
                 logger.debug(`connected`);
             })
             .on('ready', () => {
+                logger.debug(`ssh ready`);
                 client.sftp((err: Error, sftp: ssh2.SFTPWrapper) => {
                     if (err) {
+                        logger.debug(err);
                         callback(err);
                     }
                     else {
@@ -108,6 +110,8 @@ class SshConnectionEvent implements ServerSocketIO.SocketListener {
                 });
             })
             .on('error', (err) => {
+                logger.debug(`ssh error`);
+                logger.debug(client);
                 logger.error(err);
                 callback(err);
             })
