@@ -29,6 +29,7 @@ class SshConnectionEvent implements ServerSocketIO.SocketListener {
         };
 
         socket.on(SshConnectionEvent.eventName, (name: string, password: string) => {
+            logger.debug('ServerSocketIO onEvent');
             ServerUtility.getHostInfo((err, hostList) => {
                 if (err) {
                     logger.error(err);
@@ -53,12 +54,14 @@ class SshConnectionEvent implements ServerSocketIO.SocketListener {
                     return;
                 }
 
+                logger.debug('sshConnectTest ' + host.name);
                 this.sshConnectTest(host, password, (err: Error) => {
                     if (err) {
                         logger.error(err);
                         failed();
                     }
                     else {
+                        logger.debug('sshConnectTest succeed');
                         succeed();
                     }
                 });

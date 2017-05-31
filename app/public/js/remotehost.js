@@ -243,6 +243,7 @@ $(function () {
             keyPressed = false;
         });
         $(document).on('click', "#" + host.name + "_test_connect", function () {
+            console.log("#" + host.name + "_test_connect button onClick\n");
             runConnect($(this));
         });
         $(document).one('click', "#" + host.name + "_delete", function () {
@@ -265,13 +266,16 @@ $(function () {
             .text(TESTING)
             .prop('disabled', true)
             .class('disable_button button');
+        console.log("sshConnectionSocket emit");
         sshConnectionSocket.emit(label, password, function (isConnect) {
             if (isConnect) {
+                console.log("sshConnection OK");
                 button
                     .text(TEST_OK)
                     .class('ok_test_button button');
             }
             else {
+                console.log("sshConnection NG");
                 button
                     .text(TEST_NG)
                     .prop('disabled', false)
