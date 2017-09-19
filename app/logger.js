@@ -43,7 +43,7 @@ var Logger = (function () {
      * set log lovel
      * @param level log level
      */
-    Logger.setLovLevel = function (level) {
+    Logger.setLogLevel = function (level) {
         this.logLevel = level;
     };
     /**
@@ -115,6 +115,6 @@ var Logger = (function () {
 /**
  * log level
  */
-Logger.logLevel = LogLevel.info;
+Logger.logLevel = LogLevel.debug;
 module.exports = Logger;
 //# sourceMappingURL=logger.js.map

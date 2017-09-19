@@ -39,13 +39,13 @@ class Logger {
     /**
      * log level
      */
-    private static logLevel = LogLevel.info;
+    private static logLevel = LogLevel.debug;
 
     /**
      * set log lovel
      * @param level log level
      */
-    public static setLovLevel(level: LogLevel): void {
+    public static setLogLevel(level: LogLevel): void {
         this.logLevel = level;
     }
 

@@ -29,6 +29,7 @@ class SshConnectionEvent implements ServerSocketIO.SocketListener {
         };
 
         socket.on(SshConnectionEvent.eventName, (name: string, password: string) => {
+            logger.debug('ServerSocketIO onEvent');
             ServerUtility.getHostInfo((err, hostList) => {
                 if (err) {
                     logger.error(err);
@@ -53,12 +54,14 @@ class SshConnectionEvent implements ServerSocketIO.SocketListener {
                     return;
                 }
 
+                logger.debug('sshConnectTest ' + host.name);
                 this.sshConnectTest(host, password, (err: Error) => {
                     if (err) {
                         logger.error(err);
                         failed();
                     }
                     else {
+                        logger.debug('sshConnectTest succeed');
                         succeed();
                     }
                 });
@@ -94,8 +97,10 @@ class SshConnectionEvent implements ServerSocketIO.SocketListener {
                 logger.debug(`connected`);
             })
             .on('ready', () => {
+                logger.debug(`ssh ready`);
                 client.sftp((err: Error, sftp: ssh2.SFTPWrapper) => {
                     if (err) {
+                        logger.debug(err);
                         callback(err);
                     }
                     else {
@@ -105,6 +110,8 @@ class SshConnectionEvent implements ServerSocketIO.SocketListener {
                 });
             })
             .on('error', (err) => {
+                logger.debug(`ssh error`);
+                logger.debug(client);
                 logger.error(err);
                 callback(err);
             })

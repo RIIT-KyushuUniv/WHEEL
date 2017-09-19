@@ -22,6 +22,7 @@ var SshConnectionEvent = (function () {
             socket.emit(SshConnectionEvent.eventName, false);
         };
         socket.on(SshConnectionEvent.eventName, function (name, password) {
+            logger.debug('ServerSocketIO onEvent');
             ServerUtility.getHostInfo(function (err, hostList) {
                 if (err) {
                     logger.error(err);
@@ -42,12 +43,14 @@ var SshConnectionEvent = (function () {
                     succeed();
                     return;
                 }
+                logger.debug('sshConnectTest ' + host.name);
                 _this.sshConnectTest(host, password, function (err) {
                     if (err) {
                         logger.error(err);
                         failed();
                     }
                     else {
+                        logger.debug('sshConnectTest succeed');
                         succeed();
                     }
                 });
@@ -79,8 +82,10 @@ var SshConnectionEvent = (function () {
             logger.debug("connected");
         })
             .on('ready', function () {
+            logger.debug("ssh ready");
             client.sftp(function (err, sftp) {
                 if (err) {
+                    logger.debug(err);
                     callback(err);
                 }
                 else {
@@ -90,6 +95,8 @@ var SshConnectionEvent = (function () {
             });
         })
             .on('error', function (err) {
+            logger.debug("ssh error");
+            logger.debug(client);
             logger.error(err);
             callback(err);
         })
