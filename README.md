@@ -1,9 +1,11 @@
-# WHEEL (Workflow in Hierarchical distributEd parallEL)
+# WHEEL
 
 
 ## OUTLINE
 
 WHEEL is a Workflow system running on various web browsers and destrbuted parallel environments. This application is described by JavaScript and shell script so that WHEEL can support almost all environments.
+
+WHEEL is acronyum of _W_orkflow in _H_ierarchical distribut_E_d parall_EL_.
 
 
 ## Copyright
