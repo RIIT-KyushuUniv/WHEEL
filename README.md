@@ -24,3 +24,12 @@ WHEEL is a Workflow system running on various web browsers and destrbuted parall
 - Kazuya Tsuruta
 - Naoyuki Sogo
 
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-54226321-18"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-54226321-18');
+</script>
